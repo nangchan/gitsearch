@@ -8,12 +8,12 @@ import { ApolloProvider } from "react-apollo";
 
 import './App.css';
 import Layout from './Layout';
-import { APOLLO_CLIENT_ENDPOINT } from './settings';
+import { APOLLO_CLIENT_ENDPOINT, GITHUB_AUTH_TOKEN } from './settings';
 
 export const client = new ApolloClient({
   uri: APOLLO_CLIENT_ENDPOINT,
   headers: {
-    Authorization: 'Bearer 9342247dc3fd8de3b878ebec375e362debd1998a',
+    Authorization: `Bearer ${GITHUB_AUTH_TOKEN}`,
   }
 });
 
