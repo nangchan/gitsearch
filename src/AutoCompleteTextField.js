@@ -68,11 +68,14 @@ export default function AutoCompleteTextField({setQuery, searchCriteria, issueSt
         setOpen(false);
 
         // set search criteria from auto-complete input box
-        const selection = event.target.value || event.target.innerHTML;
-        setQuery(query => ({
-          ...query,
-          search_criteria: selection,
-        }));
+        // filter for focusable mouse selections
+        if (event.target.dataset.focus) {
+          const selection = event.target.value || event.target.innerHTML;
+          setQuery(query => ({
+            ...query,
+            search_criteria: selection,
+          }));
+        }
       }}
       // handle selection with keyboard
       onKeyDown={(event) => {
@@ -88,7 +91,8 @@ export default function AutoCompleteTextField({setQuery, searchCriteria, issueSt
       // handle clear with mouse
       onChange={(event) => {
         // if clicking x then clear query
-        if (event.target.tagName === 'svg') {
+        if (event.target.tagName === 'svg' || event.target.tagName === 'path') {
+          console.log('yo')
           setQuery(query => ({
             ...query,
             search_criteria: '',
